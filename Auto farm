@@ -1,0 +1,85 @@
+getgenv().AutoFarm = true
+
+function getNearestQuest() local level = game.Players.LocalPlayer.Data.Level.Value local quests = { -- 🌍 First Sea {min=10, max=14, questName="BanditQuest1", enemy="Bandit", npc="BanditQuest", pos=CFrame.new(1060, 16, 1547)}, {min=15, max=29, questName="BanditQuest2", enemy="Monkey", npc="JungleQuest", pos=CFrame.new(-1602, 37, 153)}, {min=30, max=39, questName="BanditQuest2", enemy="Gorilla", npc="JungleQuest", pos=CFrame.new(-1602, 37, 153)}, {min=40, max=59, questName="BuggyQuest1", enemy="Pirate", npc="BuggyQuest1", pos=CFrame.new(-1140, 5, 3828)}, {min=60, max=74, questName="BuggyQuest1", enemy="Brute", npc="BuggyQuest1", pos=CFrame.new(-1140, 5, 3828)}, {min=75, max=89, questName="BuggyQuest2", enemy="Desert Bandit", npc="DesertQuest", pos=CFrame.new(924, 7, 4484)}, {min=90, max=99, questName="BuggyQuest2", enemy="Desert Officer", npc="DesertQuest", pos=CFrame.new(924, 7, 4484)}, {min=100, max=119, questName="SnowQuest", enemy="Snow Bandit", npc="SnowQuest", pos=CFrame.new(1389, 87, -1297)}, {min=120, max=149, questName="SnowQuest", enemy="Snowman", npc="SnowQuest", pos=CFrame.new(1389, 87, -1297)}, {min=150, max=174, questName="MarineQuest2", enemy="Chief Petty Officer", npc="MarineQuest2", pos=CFrame.new(-5035, 28, 4326)}, {min=175, max=189, questName="SkyQuest", enemy="Sky Bandit", npc="SkyQuest", pos=CFrame.new(-4842, 717, -2623)}, {min=190, max=209, questName="SkyQuest", enemy="Dark Master", npc="SkyQuest", pos=CFrame.new(-4842, 717, -2623)}, {min=210, max=249, questName="ColosseumQuest", enemy="Toga Warrior", npc="ColosseumQuest", pos=CFrame.new(-1576, 7, -2985)}, {min=250, max=274, questName="ColosseumQuest", enemy="Gladiator", npc="ColosseumQuest", pos=CFrame.new(-1576, 7, -2985)}, {min=275, max=299, questName="MagmaQuest", enemy="Military Soldier", npc="MagmaQuest", pos=CFrame.new(-5313, 12, 8514)}, {min=300, max=324, questName="MagmaQuest", enemy="Military Spy", npc="MagmaQuest", pos=CFrame.new(-5313, 12, 8514)}, {min=325, max=374, questName="FishmanQuest", enemy="Fishman Warrior", npc="FishmanQuest", pos=CFrame.new(61123, 19, 1569)}, {min=375, max=399, questName="FishmanQuest", enemy="Fishman Commando", npc="FishmanQuest", pos=CFrame.new(61123, 19, 1569)}, {min=400, max=449, questName="BuggyQuest2", enemy="God's Guard", npc="SkyExpQuest", pos=CFrame.new(-4724, 843, -1954)}, {min=450, max=474, questName="SkyExpQuest", enemy="Shanda", npc="SkyExpQuest", pos=CFrame.new(-7869, 5546, -379)}, {min=475, max=524, questName="SkyExpQuest", enemy="Royal Squad", npc="SkyExpQuest", pos=CFrame.new(-7869, 5546, -379)}, {min=525, max=549, questName="SkyExpQuest", enemy="Royal Soldier", npc="SkyExpQuest", pos=CFrame.new(-7869, 5546, -379)}, {min=550, max=624, questName="FountainQuest", enemy="Galley Pirate", npc="FountainQuest", pos=CFrame.new(5255, 38, 4050)}, {min=625, max=700, questName="FountainQuest", enemy="Galley Captain", npc="FountainQuest", pos=CFrame.new(5255, 38, 4050)},
+
+-- 🌊 Second Sea (700+)
+    {min=700, max=724, questName="Area1Quest", enemy="Raider", npc="Area1Quest", pos=CFrame.new(-429, 73, 1837)},
+    {min=725, max=774, questName="Area1Quest", enemy="Mercenary", npc="Area1Quest", pos=CFrame.new(-429, 73, 1837)},
+    {min=775, max=799, questName="Area2Quest", enemy="Swan Pirate", npc="Area2Quest", pos=CFrame.new(634, 73, 918)},
+    {min=800, max=874, questName="Area2Quest", enemy="Factory Staff", npc="Area2Quest", pos=CFrame.new(634, 73, 918)},
+    {min=875, max=899, questName="Area3Quest", enemy="Marine Lieutenant", npc="Area3Quest", pos=CFrame.new(-2440, 73, -3214)},
+    {min=900, max=949, questName="Area3Quest", enemy="Marine Captain", npc="Area3Quest", pos=CFrame.new(-2440, 73, -3214)},
+    {min=950, max=974, questName="Area4Quest", enemy="Zombie", npc="Area4Quest", pos=CFrame.new(-5581, 73, -786)},
+    {min=975, max=999, questName="Area4Quest", enemy="Vampire", npc="Area4Quest", pos=CFrame.new(-5581, 73, -786)},
+    {min=1000, max=1049, questName="Area5Quest", enemy="Snow Trooper", npc="Area5Quest", pos=CFrame.new(605, 401, -5372)},
+    {min=1050, max=1099, questName="Area5Quest", enemy="Winter Warrior", npc="Area5Quest", pos=CFrame.new(605, 401, -5372)},
+    {min=1100, max=1124, questName="Area6Quest", enemy="Lab Subordinate", npc="Area6Quest", pos=CFrame.new(-5781, 73, -4496)},
+    {min=1125, max=1174, questName="Area6Quest", enemy="Horned Warrior", npc="Area6Quest", pos=CFrame.new(-5781, 73, -4496)},
+    {min=1175, max=1199, questName="Area7Quest", enemy="Magma Ninja", npc="Area7Quest", pos=CFrame.new(-5429, 78, -5958)},
+    {min=1200, max=1249, questName="Area7Quest", enemy="Lava Pirate", npc="Area7Quest", pos=CFrame.new(-5429, 78, -5958)},
+    {min=1250, max=1299, questName="ShipQuest1", enemy="Pirate Millionaire", npc="ShipQuest1", pos=CFrame.new(1037, 125, 32911)},
+    {min=1300, max=1349, questName="ShipQuest2", enemy="Dragon Crew Warrior", npc="ShipQuest2", pos=CFrame.new(918, 125, 33285)},
+    {min=1350, max=1424, questName="ShipQuest3", enemy="Galley Pirate", npc="ShipQuest3", pos=CFrame.new(5558, 142, 3990)},
+    {min=1425, max=1499, questName="ShipQuest3", enemy="Galley Captain", npc="ShipQuest3", pos=CFrame.new(5558, 142, 3990)},
+
+    -- 🌋 Third Sea (1500+)
+    {min=1500, max=1524, questName="PiratePortQuest", enemy="Pirate Millionaire", npc="PiratePortQuest", pos=CFrame.new(-288, 44, 5577)},
+    {min=1525, max=1574, questName="PiratePortQuest", enemy="Pistol Billionaire", npc="PiratePortQuest", pos=CFrame.new(-288, 44, 5577)},
+    {min=1575, max=1599, questName="MagmaQuest", enemy="Dragon Crew Warrior", npc="MagmaQuest", pos=CFrame.new(5920, 44, -5144)},
+    {min=1600, max=1649, questName="MagmaQuest", enemy="Dragon Crew Archer", npc="MagmaQuest", pos=CFrame.new(5920, 44, -5144)},
+    {min=1650, max=1699, questName="IceCreamQuest", enemy="Sweet Thief", npc="IceCreamQuest", pos=CFrame.new(-821, 66, -10964)},
+    {min=1700, max=1749, questName="CakeQuest1", enemy="Cookie Crafter", npc="CakeQuest1", pos=CFrame.new(-2025, 70, -12029)},
+    {min=1750, max=1774, questName="CakeQuest1", enemy="Cake Guard", npc="CakeQuest1", pos=CFrame.new(-2025, 70, -12029)},
+    {min=1775, max=1799, questName="CakeQuest2", enemy="Baking Staff", npc="CakeQuest2", pos=CFrame.new(-1651, 70, -12241)},
+    {min=1800, max=1824, questName="CakeQuest2", enemy="Head Baker", npc="CakeQuest2", pos=CFrame.new(-1651, 70, -12241)},
+    {min=1825, max=1899, questName="HauntedQuest1", enemy="Living Zombie", npc="HauntedQuest1", pos=CFrame.new(-9515, 142, 5763)},
+    {min=1900, max=1974, questName="HauntedQuest2", enemy="Possessed Mummy", npc="HauntedQuest2", pos=CFrame.new(-9515, 142, 5763)},
+    {min=1975, max=1999, questName="HauntedQuest2", enemy="Soul Reaper", npc="HauntedQuest2", pos=CFrame.new(-9515, 142, 5763)},
+    {min=2000, max=2575, questName="PeanutQuest1", enemy="Peanut Scout", npc="PeanutQuest1", pos=CFrame.new(-2063, 76, -10426)}
+}
+
+for _, q in pairs(quests) do
+    if level >= q.min and level <= q.max then
+        return q
+    end
+end
+return nil
+
+end
+
+function equipMelee() for _, tool in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do if tool:IsA("Tool") and tool.ToolTip == "Melee" then game.Players.LocalPlayer.Character.Humanoid:EquipTool(tool) break end end end
+
+function attackTarget(target) local tool = game.Players.LocalPlayer.Character:FindFirstChildWhichIsA("Tool") if tool and tool:FindFirstChild("RemoteEvent") then tool.RemoteEvent:FireServer("Combat", target) end end
+
+function AutoFarmLoop() spawn(function() while getgenv().AutoFarm do wait(1) local quest = getNearestQuest() if not quest then return end
+
+pcall(function()
+            local player = game.Players.LocalPlayer
+            local char = player.Character or player.CharacterAdded:Wait()
+
+            if not player.PlayerGui:FindFirstChild("Quest") then
+                char.HumanoidRootPart.CFrame = quest.pos + Vector3.new(0, 3, 0)
+                wait(1)
+                game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("StartQuest", quest.questName, 1)
+                wait(1)
+            end
+
+            equipMelee()
+
+            for _, enemy in pairs(workspace.Enemies:GetChildren()) do
+                if enemy.Name == quest.enemy and enemy:FindFirstChild("HumanoidRootPart") and enemy.Humanoid.Health > 0 then
+                    repeat
+                        wait(0.1)
+                        char.HumanoidRootPart.CFrame = enemy.HumanoidRootPart.CFrame * CFrame.new(0, 0, 2)
+                        attackTarget(enemy)
+                    until enemy.Humanoid.Health <= 0 or not getgenv().AutoFarm
+                end
+            end
+        end)
+    end
+end)
+
+end
+
+AutoFarmLoop()
+
